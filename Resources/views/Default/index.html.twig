@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Form Builder {% endblock %}
+{% block body %}
+    <h1><a href="/pattern">Паттерны</a> / <a href="/pattern/builder">Паттерн - Builder</a> / Form Builder</h1>
+    <p>Создание модуля с помощью паттерна Builder</p>
+    <h3>Тестирование строителя форм</h3>
+    {% autoescape true %} <p>{{ result }}</p> {% endautoescape %}
+    <h3>Документация</h3>
+    <h4>Создание формы</h4>
+    <p>При отсутствие аттрибутов для создания формы, </p>
+    <p>Для создания формы может быть использован метод <b>addStartForm</b>.</p>
+    <h4>Существующие методы</h4>
+    <ol>
+        <li>addStartForm - указываем начальный тег формы</li>
+        <ul>
+            <li>Form - передается параметры для тег {{ "<form>" }}</li>
+        </ul>
+        <li>addElement - добавление элемента формы</li>
+        <ul>
+            <li>Input - параметры для создания поля input</li>
+            <li>Select - параметры для создания списка select</li>
+        </ul>
+        <li>getResult - получение построенной формы</li>
+    </ol>
+    <h4>Возможные аттрибуты</h4>
+    <ol>
+        <li>Form</li>
+        <ul>
+            <li>name</li>
+            <li>class</li>
+            <li>style</li>
+            <li>method</li>
+            <li>id</li>
+        </ul>
+        <li>Input</li>
+        <ul>
+            <li>name</li>
+            <li>type</li>
+            <li>placeholder</li>
+            <li>class</li>
+            <li>style</li>
+            <li>value</li>
+            <li>autofocus</li>
+            <li>autocomplete</li>
+            <li>max</li>
+            <li>min</li>
+            <li>maxlength</li>
+            <li>minlength</li>
+            <li>id</li>
+        </ul>
+        <li>Select</li>
+        <ul>
+            <li>select</li>
+            <ul>
+                <li>name</li>
+                <li>class</li>
+                <li>style</li>
+                <li>id</li>
+                <li>multiple</li>
+            </ul>
+            <li>option</li>
+            <ul>
+                <li>value</li>
+                <li>text - параметр, что прописывается между тэгами {{ "<option></option>" }}</li>
+                <li>disabled</li>
+                <li>selected</li>
+            </ul>
+        </ul>
+    </ol>
+    <h4>Примеры создания записей</h4>
+    {{ "<p>$result = FormBuilder::create();</p>
+        <p>$result->addStartForm(new Form([</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'form',</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;'method' => 'post'</p>
+        <p>]));</p>
+        <p>$result->addElement(new Input([</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'text',</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;'placeholder' => 'Input text value',</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;'type' => 'text'</p>
+        <p>]));</p>
+        <p>$result->addElement(new Input([</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'password',</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;'placeholder' => 'Input password value',</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;'type' => 'password'</p>
+        <p>]));</p>
+        <p>$result->addElement(new Select([</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;'select' => [</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name' => 'select'</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;],</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;'options' => [</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['text' => 'Список'],</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['text' => 'Первый элемент', 'selected' => 'selected'],</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['text' => 'Второй элемент'],</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['text' => 'Третий элемент', 'disabled' => 'disabled'],</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;]</p>
+        <p>]));</p>" }}
+{% endblock %}
